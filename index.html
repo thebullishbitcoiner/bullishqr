@@ -18,7 +18,9 @@
                 placeholder="Paste link or text here..."
                 autocomplete="off"
             >
-            <button id="createBtn" class="create-btn">Create</button>
+            <button id="createBtn" class="create-btn" aria-label="Create QR Code">
+                <img src="/qr-code.svg" alt="QR Code" />
+            </button>
         </div>
         <div id="qrContainer" class="qr-container hidden">
             <canvas id="qrCanvas"></canvas>
