@@ -1,10 +1,15 @@
 import QRCode from 'qrcode';
+import qrIconUrl from './qr-code.svg?url';
 
 const qrInput = document.getElementById('qrInput');
 const qrContainer = document.getElementById('qrContainer');
 const qrCanvas = document.getElementById('qrCanvas');
 const saveBtn = document.getElementById('saveBtn');
 const createBtn = document.getElementById('createBtn');
+const qrIconImg = document.querySelector('.create-btn img');
+if (qrIconImg) {
+    qrIconImg.src = qrIconUrl;
+}
 
 // Update version display (injected by Vite at build time)
 const version = __APP_VERSION__;
