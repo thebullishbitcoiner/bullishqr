@@ -1,4 +1,9 @@
 import { defineConfig } from 'vite';
+import { readFileSync } from 'fs';
+
+// Read version from package.json
+const packageJson = JSON.parse(readFileSync('./package.json', 'utf-8'));
+const version = packageJson.version;
 
 // GitHub Pages base path - update this to match your repository name
 // If your repo is at https://username.github.io/bullishqr, use '/bullishqr/'
@@ -7,6 +12,9 @@ const base = process.env.GITHUB_PAGES === 'true' ? '/bullishqr/' : '/';
 
 export default defineConfig({
   base,
+  define: {
+    __APP_VERSION__: JSON.stringify(version),
+  },
   build: {
     outDir: 'dist',
     assetsDir: 'assets',

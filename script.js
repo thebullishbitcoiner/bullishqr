@@ -5,18 +5,39 @@ const qrContainer = document.getElementById('qrContainer');
 const qrCanvas = document.getElementById('qrCanvas');
 const saveBtn = document.getElementById('saveBtn');
 
+// Update version display (injected by Vite at build time)
+const version = __APP_VERSION__;
+const versionSpan = document.getElementById('version');
+if (versionSpan) {
+    versionSpan.textContent = `v${version}`;
+}
+
 let currentQRData = '';
 
-// Generate QR code when input changes
-qrInput.addEventListener('input', (e) => {
-    const text = e.target.value.trim();
+// Function to process input and generate QR code
+function processInput() {
+    const text = qrInput.value.trim();
     
     if (text) {
         generateQRCode(text);
     } else {
         hideQRCode();
     }
+}
+
+// Generate QR code when input changes
+qrInput.addEventListener('input', processInput);
+
+// Handle paste event specifically (important for mobile)
+qrInput.addEventListener('paste', (e) => {
+    // Small delay to ensure paste completes before reading value
+    setTimeout(() => {
+        processInput();
+    }, 10);
 });
+
+// Fallback for change event (mobile browsers sometimes use this)
+qrInput.addEventListener('change', processInput);
 
 // Generate QR code
 function generateQRCode(text) {
