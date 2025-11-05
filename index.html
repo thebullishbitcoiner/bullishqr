@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#000000">
     <title>bullishQR</title>
     <link rel="manifest" href="manifest.json">
@@ -17,8 +17,8 @@
                 id="qrInput" 
                 placeholder="Paste link or text here..."
                 autocomplete="off"
-                inputmode="url"
             >
+            <button id="createBtn" class="create-btn">Create</button>
         </div>
         <div id="qrContainer" class="qr-container hidden">
             <canvas id="qrCanvas"></canvas>

@@ -4,6 +4,7 @@ const qrInput = document.getElementById('qrInput');
 const qrContainer = document.getElementById('qrContainer');
 const qrCanvas = document.getElementById('qrCanvas');
 const saveBtn = document.getElementById('saveBtn');
+const createBtn = document.getElementById('createBtn');
 
 // Update version display (injected by Vite at build time)
 const version = __APP_VERSION__;
@@ -14,8 +15,8 @@ if (versionSpan) {
 
 let currentQRData = '';
 
-// Function to process input and generate QR code
-function processInput() {
+// Generate QR code on button click
+createBtn.addEventListener('click', () => {
     const text = qrInput.value.trim();
     
     if (text) {
@@ -23,21 +24,14 @@ function processInput() {
     } else {
         hideQRCode();
     }
-}
-
-// Generate QR code when input changes
-qrInput.addEventListener('input', processInput);
-
-// Handle paste event specifically (important for mobile)
-qrInput.addEventListener('paste', (e) => {
-    // Small delay to ensure paste completes before reading value
-    setTimeout(() => {
-        processInput();
-    }, 10);
 });
 
-// Fallback for change event (mobile browsers sometimes use this)
-qrInput.addEventListener('change', processInput);
+// Also allow Enter key to create QR code
+qrInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        createBtn.click();
+    }
+});
 
 // Generate QR code
 function generateQRCode(text) {
