@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000000">
+    <title>bullishQR</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>bullishQR</h1>
+        <div class="input-container">
+            <input 
+                type="text" 
+                id="qrInput" 
+                placeholder="Paste link or text here..."
+                autocomplete="off"
+            >
+        </div>
+        <div id="qrContainer" class="qr-container hidden">
+            <canvas id="qrCanvas"></canvas>
+            <button id="saveBtn" class="save-btn">Save QR Code</button>
+        </div>
+    </div>
+    <script type="module" src="/script.js"></script>
+</body>
+</html>
+
