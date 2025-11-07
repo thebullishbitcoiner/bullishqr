@@ -62,15 +62,6 @@ function initApp() {
         }
     });
     
-    // Ensure input is focusable in PWA mode (simplified)
-    qrInput.addEventListener('touchstart', (e) => {
-        // Don't prevent default - let normal input behavior work
-        qrInput.focus();
-    }, { passive: true });
-    
-    // Ensure input is not disabled
-    qrInput.disabled = false;
-    qrInput.readOnly = false;
 
     // Generate QR code
     function generateQRCode(text) {
