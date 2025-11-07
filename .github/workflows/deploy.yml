@@ -34,7 +34,8 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          GITHUB_PAGES: true
+          BASE_PATH: /bullishqr/
+          NODE_ENV: production
       
       - name: Setup Pages
         uses: actions/configure-pages@v4

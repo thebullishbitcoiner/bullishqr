@@ -5,10 +5,11 @@ import { readFileSync } from 'fs';
 const packageJson = JSON.parse(readFileSync('./package.json', 'utf-8'));
 const version = packageJson.version;
 
-// GitHub Pages base path - update this to match your repository name
-// If your repo is at https://username.github.io/bullishqr, use '/bullishqr/'
-// If it's at https://username.github.io/, use '/'
-const base = '/bullishqr/';
+// GitHub Pages base path - dynamically set based on environment
+// For development (HMR), use '/' so everything works locally
+// For production builds, use '/bullishqr/' for GitHub Pages
+// You can override this by setting BASE_PATH environment variable
+const base = process.env.BASE_PATH || (process.env.NODE_ENV === 'production' ? '/bullishqr/' : '/');
 
 export default defineConfig({
   base,
