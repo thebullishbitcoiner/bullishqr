@@ -19,6 +19,21 @@ if (versionSpan) {
 }
 
 let currentQRData = '';
+let resizeTimeout = null;
+
+// Handle window resize - regenerate QR code if one is displayed
+window.addEventListener('resize', () => {
+    // Debounce resize events to avoid regenerating too frequently
+    if (resizeTimeout) {
+        clearTimeout(resizeTimeout);
+    }
+    
+    resizeTimeout = setTimeout(() => {
+        if (currentQRData && !qrContainer.classList.contains('hidden')) {
+            generateQRCode(currentQRData);
+        }
+    }, 150);
+});
 
 // Generate QR code on button click
 createBtn.addEventListener('click', () => {
@@ -42,13 +57,23 @@ qrInput.addEventListener('keypress', (e) => {
 function generateQRCode(text) {
     currentQRData = text;
     
+    // Calculate QR code size based on container width
+    // Container max-width is 500px, use full width for square QR code
+    const container = document.querySelector('.container');
+    const containerWidth = Math.min(container.offsetWidth, 500);
+    const qrSize = containerWidth;
+    
+    // Set canvas size to ensure square aspect ratio
+    qrCanvas.width = qrSize;
+    qrCanvas.height = qrSize;
+    
     // Clear previous QR code
     const ctx = qrCanvas.getContext('2d');
     ctx.clearRect(0, 0, qrCanvas.width, qrCanvas.height);
     
     // Generate new QR code
     QRCode.toCanvas(qrCanvas, text, {
-        width: 300,
+        width: qrSize,
         margin: 2,
         color: {
             dark: '#000000',
