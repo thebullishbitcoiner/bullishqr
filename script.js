@@ -12,18 +12,27 @@ const createBtn = document.getElementById('createBtn');
 if (qrInput) {
     qrInput.setAttribute('tabindex', '0');
     
-    // Force focus on touch/click to ensure keyboard appears in PWA mode
-    qrInput.addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        qrInput.focus();
-        // Force keyboard to show
+    // In PWA standalone mode, sometimes the keyboard doesn't show without explicit focus
+    // Try multiple approaches to ensure keyboard appears
+    qrInput.addEventListener('touchstart', () => {
+        // Don't preventDefault - let native behavior work first
+        // Then force focus after a short delay
         setTimeout(() => {
-            qrInput.click();
             qrInput.focus();
-        }, 50);
+            // Try to show keyboard by creating a selection
+            if (qrInput.setSelectionRange) {
+                qrInput.setSelectionRange(0, 0);
+            }
+        }, 100);
+    }, { passive: true });
+    
+    qrInput.addEventListener('touchend', (e) => {
+        // Focus on touchend instead of touchstart
+        qrInput.focus();
+        e.preventDefault(); // Only prevent default here to stop any click that might interfere
     }, { passive: false });
     
-    qrInput.addEventListener('click', (e) => {
+    qrInput.addEventListener('click', () => {
         qrInput.focus();
     });
     
