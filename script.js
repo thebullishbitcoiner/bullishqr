@@ -62,18 +62,15 @@ function initApp() {
         }
     });
     
-    // Also handle input event for better PWA compatibility
-    qrInput.addEventListener('input', (e) => {
-        // Ensure input is working
-        if (qrInput.value.trim()) {
-            qrInput.style.borderColor = '#333333';
-        }
-    });
-    
-    // Ensure input is focusable and clickable in PWA mode
+    // Ensure input is focusable in PWA mode (simplified)
     qrInput.addEventListener('touchstart', (e) => {
+        // Don't prevent default - let normal input behavior work
         qrInput.focus();
     }, { passive: true });
+    
+    // Ensure input is not disabled
+    qrInput.disabled = false;
+    qrInput.readOnly = false;
 
     // Generate QR code
     function generateQRCode(text) {

@@ -62,6 +62,8 @@ h1 {
     display: flex;
     gap: 4px;
     align-items: stretch;
+    position: relative;
+    z-index: 1;
 }
 
 #qrInput {
@@ -81,6 +83,10 @@ h1 {
     touch-action: manipulation;
     user-select: text;
     -webkit-user-select: text;
+    pointer-events: auto;
+    z-index: 1;
+    position: relative;
+    -webkit-tap-highlight-color: rgba(255, 153, 0, 0.3);
 }
 
 @media (min-width: 768px) {

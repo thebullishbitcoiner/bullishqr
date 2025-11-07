@@ -1,6 +1,6 @@
 {
   "name": "bullishqr",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "A bullish PWA to generate QR codes",
   "type": "module",
   "scripts": {
