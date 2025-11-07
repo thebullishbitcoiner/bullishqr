@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/pre-deploy.js",
     "build": "vite build",
-    "deploy": "node scripts/pre-deploy.js && npm run build && node scripts/deploy-to-root.js",
+    "deploy": "npm run build && node scripts/deploy-to-root.js",
     "preview": "vite preview"
   },
   "devDependencies": {
