@@ -6,13 +6,18 @@ console.log('🧹 Cleaning old deployment files before build...');
 
 const rootDir = '.';
 
-// Always restore source files from git first
-console.log('📥 Restoring source files from git...');
+// Always restore source files from git first (if in git repo)
+console.log('📥 Checking source files...');
 try {
-  execSync('git checkout HEAD -- index.html manifest.json', { stdio: 'inherit' });
-  console.log('✓ Restored source files');
+  // Check if we're in a git repo
+  execSync('git rev-parse --git-dir', { stdio: 'pipe' });
+  
+  // Restore source files
+  execSync('git checkout HEAD -- index.html manifest.json', { stdio: 'pipe' });
+  console.log('✓ Restored source files from git');
 } catch (error) {
-  console.warn('⚠ Could not restore from git (this is OK if not in a git repo)');
+  // Not in git repo or git command failed - that's OK, continue
+  console.log('ℹ Not in git repo or git unavailable, checking files manually...');
 }
 
 // Clean old deployment files
