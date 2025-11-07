@@ -62,8 +62,6 @@ h1 {
     display: flex;
     gap: 4px;
     align-items: stretch;
-    position: relative;
-    z-index: 1;
 }
 
 #qrInput {
