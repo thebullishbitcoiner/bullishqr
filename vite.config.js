@@ -25,6 +25,30 @@ export default defineConfig({
       },
     },
   },
+  plugins: [
+    {
+      name: 'fix-manifest-icons',
+      writeBundle(options, bundle) {
+        // Find the manifest file in bundle
+        const manifestFile = Object.keys(bundle).find(file => 
+          file.startsWith('assets/manifest-') && file.endsWith('.json')
+        );
+        
+        if (manifestFile && bundle[manifestFile]) {
+          const manifest = JSON.parse(bundle[manifestFile].source);
+          // Fix icon paths - manifest is in assets/, logo is in root
+          // So we need to go up one level: ../logo.png
+          if (manifest.icons) {
+            manifest.icons.forEach(icon => {
+              // Change from ./logo.png to ../logo.png (from assets/ to root)
+              icon.src = icon.src.replace('./logo.png', '../logo.png');
+            });
+            bundle[manifestFile].source = JSON.stringify(manifest, null, 2);
+          }
+        }
+      }
+    }
+  ],
   server: {
     port: 3000,
     open: true,
