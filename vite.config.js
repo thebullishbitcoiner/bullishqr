@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
-import { readFileSync } from 'fs';
+import { readFileSync, writeFileSync, readdirSync } from 'fs';
+import { join } from 'path';
 
 // Read version from package.json
 const packageJson = JSON.parse(readFileSync('./package.json', 'utf-8'));
@@ -28,23 +29,28 @@ export default defineConfig({
   plugins: [
     {
       name: 'fix-manifest-icons',
-      writeBundle(options, bundle) {
-        // Find the manifest file in bundle
-        const manifestFile = Object.keys(bundle).find(file => 
-          file.startsWith('assets/manifest-') && file.endsWith('.json')
-        );
-        
-        if (manifestFile && bundle[manifestFile]) {
-          const manifest = JSON.parse(bundle[manifestFile].source);
-          // Fix icon paths - manifest is in assets/, logo is in root
-          // So we need to go up one level: ../logo.png
-          if (manifest.icons) {
-            manifest.icons.forEach(icon => {
-              // Change from ./logo.png to ../logo.png (from assets/ to root)
-              icon.src = icon.src.replace('./logo.png', '../logo.png');
-            });
-            bundle[manifestFile].source = JSON.stringify(manifest, null, 2);
+      closeBundle() {
+        // After build completes, find and fix the manifest file
+        const assetsDir = join('dist', 'assets');
+        try {
+          const files = readdirSync(assetsDir);
+          const manifestFile = files.find(file => file.startsWith('manifest-') && file.endsWith('.json'));
+          
+          if (manifestFile) {
+            const manifestPath = join(assetsDir, manifestFile);
+            const manifest = JSON.parse(readFileSync(manifestPath, 'utf-8'));
+            
+            // Fix icon paths - manifest is in assets/, logo is in root
+            // So we need to go up one level: ../logo.png
+            if (manifest.icons) {
+              manifest.icons.forEach(icon => {
+                icon.src = '../logo.png';
+              });
+              writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
+            }
           }
+        } catch (error) {
+          console.warn('Could not fix manifest icons:', error);
         }
       }
     }
