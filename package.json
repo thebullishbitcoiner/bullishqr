@@ -1,11 +1,12 @@
 {
   "name": "bullishqr",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A bullish PWA to generate QR codes",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "deploy": "node scripts/pre-deploy.js && npm run build && node scripts/deploy-to-root.js",
     "preview": "vite preview"
   },
   "devDependencies": {

@@ -45,18 +45,33 @@ npm run preview
 
 ## Deployment to GitHub Pages
 
-The project is configured for automatic deployment to GitHub Pages:
+The project deploys from the root of the main branch:
 
-1. **Enable GitHub Pages** in your repository settings:
+1. **Build and deploy**:
+   ```bash
+   npm run deploy
+   ```
+
+   This will:
+   - Build the project to `dist/`
+   - Copy built files to root (`index.html`, `manifest.json`, `assets/`)
+   - Create `.nojekyll` file
+
+2. **Commit and push the built files**:
+   ```bash
+   git add index.html manifest.json assets/ .nojekyll
+   git commit -m "Deploy to GitHub Pages"
+   git push
+   ```
+
+3. **Enable GitHub Pages** in your repository settings:
    - Go to Settings → Pages
-   - Source: GitHub Actions
+   - Source: Deploy from a branch
+   - Branch: `main` / `root` folder
 
-2. **Update the base path** (if needed):
+4. **Update the base path** (if needed):
    - If your repository name is different from `bullishqr`, update the `base` path in `vite.config.js`
    - Also update `start_url` in `manifest.json` to match
-
-3. **Push to main branch**:
-   - The GitHub Actions workflow will automatically build and deploy on push to `main`
 
 The app will be available at: `https://[your-username].github.io/bullishqr/`
 

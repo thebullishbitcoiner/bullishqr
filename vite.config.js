@@ -8,7 +8,7 @@ const version = packageJson.version;
 // GitHub Pages base path - update this to match your repository name
 // If your repo is at https://username.github.io/bullishqr, use '/bullishqr/'
 // If it's at https://username.github.io/, use '/'
-const base = process.env.GITHUB_PAGES === 'true' ? '/bullishqr/' : '/';
+const base = '/bullishqr/';
 
 export default defineConfig({
   base,

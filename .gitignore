@@ -6,6 +6,12 @@ dist/
 dist-ssr/
 *.local
 
+# Deployment files (these are built and committed to root)
+# Uncomment these if you want to ignore them:
+# assets/
+# index.html
+# manifest.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
