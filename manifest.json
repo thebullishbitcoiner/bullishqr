@@ -2,7 +2,7 @@
   "name": "bullishQR",
   "short_name": "bullishQR",
   "description": "Simple QR code generator",
-  "start_url": "./",
+  "start_url": "/bullishqr/",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#ff9900",
