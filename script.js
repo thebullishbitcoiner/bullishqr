@@ -35,11 +35,6 @@ if (qrInput) {
     qrInput.addEventListener('click', () => {
         qrInput.focus();
     });
-    
-    // Test if input can receive focus
-    console.log('Input element found:', qrInput);
-    console.log('Input disabled?', qrInput.disabled);
-    console.log('Input readonly?', qrInput.readOnly);
 }
 
 const qrIconImg = document.querySelector('.create-btn img');
