@@ -58,9 +58,9 @@ function generateQRCode(text) {
     currentQRData = text;
     
     // Calculate QR code size based on container width
-    // Container max-width is 500px, use full width for square QR code
+    // Container respects CSS max-width (500px mobile, 600px desktop)
     const container = document.querySelector('.container');
-    const containerWidth = Math.min(container.offsetWidth, 500);
+    const containerWidth = container.offsetWidth;
     const qrSize = containerWidth;
     
     // Set canvas size to ensure square aspect ratio

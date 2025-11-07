@@ -28,6 +28,12 @@ body {
     text-align: center;
 }
 
+@media (min-width: 768px) {
+    .container {
+        max-width: 600px;
+    }
+}
+
 h1 {
     color: #ff9900;
     margin-bottom: 20px;
@@ -35,6 +41,13 @@ h1 {
     font-size: 1.8rem;
     font-weight: 700;
     text-align: left;
+}
+
+@media (min-width: 768px) {
+    h1 {
+        font-size: 2.2rem;
+        margin-bottom: 24px;
+    }
 }
 
 .version {
@@ -64,6 +77,13 @@ h1 {
     transition: border-color 0.3s ease;
 }
 
+@media (min-width: 768px) {
+    #qrInput {
+        padding: 18px;
+        font-size: 18px;
+    }
+}
+
 .create-btn {
     background-color: #ff9900;
     color: #000000;
@@ -81,10 +101,24 @@ h1 {
     min-width: 44px;
 }
 
+@media (min-width: 768px) {
+    .create-btn {
+        padding: 8px;
+        min-width: 52px;
+    }
+}
+
 .create-btn img {
     width: 42px;
     height: 42px;
     display: block;
+}
+
+@media (min-width: 768px) {
+    .create-btn img {
+        width: 48px;
+        height: 48px;
+    }
 }
 
 .create-btn:hover {
@@ -144,6 +178,13 @@ h1 {
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+}
+
+@media (min-width: 768px) {
+    .save-btn {
+        padding: 14px 36px;
+        font-size: 18px;
+    }
 }
 
 .save-btn:hover {
