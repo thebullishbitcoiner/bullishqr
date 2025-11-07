@@ -19,18 +19,15 @@ if (qrInput) {
         // Then force focus after a short delay
         setTimeout(() => {
             qrInput.focus();
-            // Try to show keyboard by creating a selection
-            if (qrInput.setSelectionRange) {
-                qrInput.setSelectionRange(0, 0);
-            }
+            // Don't set selection range - let user's tap position determine cursor location
         }, 100);
     }, { passive: true });
     
-    qrInput.addEventListener('touchend', (e) => {
-        // Focus on touchend instead of touchstart
+    qrInput.addEventListener('touchend', () => {
+        // Focus on touchend to ensure keyboard appears
+        // Don't preventDefault - let native tap-to-select behavior work
         qrInput.focus();
-        e.preventDefault(); // Only prevent default here to stop any click that might interfere
-    }, { passive: false });
+    }, { passive: true });
     
     qrInput.addEventListener('click', () => {
         qrInput.focus();
