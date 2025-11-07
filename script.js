@@ -8,6 +8,15 @@ const qrCanvas = document.getElementById('qrCanvas');
 const saveBtn = document.getElementById('saveBtn');
 const createBtn = document.getElementById('createBtn');
 
+// Ensure input is accessible (for PWA compatibility)
+if (qrInput) {
+    qrInput.setAttribute('tabindex', '0');
+    // Test if input can receive focus
+    console.log('Input element found:', qrInput);
+    console.log('Input disabled?', qrInput.disabled);
+    console.log('Input readonly?', qrInput.readOnly);
+}
+
 const qrIconImg = document.querySelector('.create-btn img');
 if (qrIconImg) {
     qrIconImg.src = qrIconUrl;
