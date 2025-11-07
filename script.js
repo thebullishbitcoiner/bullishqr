@@ -11,6 +11,22 @@ const createBtn = document.getElementById('createBtn');
 // Ensure input is accessible (for PWA compatibility)
 if (qrInput) {
     qrInput.setAttribute('tabindex', '0');
+    
+    // Force focus on touch/click to ensure keyboard appears in PWA mode
+    qrInput.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        qrInput.focus();
+        // Force keyboard to show
+        setTimeout(() => {
+            qrInput.click();
+            qrInput.focus();
+        }, 50);
+    }, { passive: false });
+    
+    qrInput.addEventListener('click', (e) => {
+        qrInput.focus();
+    });
+    
     // Test if input can receive focus
     console.log('Input element found:', qrInput);
     console.log('Input disabled?', qrInput.disabled);
