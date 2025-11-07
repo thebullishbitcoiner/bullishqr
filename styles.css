@@ -71,7 +71,6 @@ h1 {
     background-color: #1a1a1a;
     border: 2px solid #333333;
     border-right: none;
-    border-radius: 8px 0 0 8px;
     color: #ffffff;
     outline: none;
     transition: border-color 0.3s ease;
@@ -96,7 +95,6 @@ h1 {
     padding: 5px;
     font-size: 14px;
     font-weight: 600;
-    border-radius: 0 8px 8px 0;
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
@@ -162,7 +160,6 @@ h1 {
 
 #qrCanvas {
     background-color: #ffffff;
-    border-radius: 8px;
     box-shadow: 0 4px 20px rgba(255, 153, 0, 0.3);
     max-width: 100%;
     width: 100%;
@@ -177,7 +174,6 @@ h1 {
     padding: 12px 30px;
     font-size: 16px;
     font-weight: 600;
-    border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
     text-transform: uppercase;
